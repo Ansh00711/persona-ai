@@ -8,7 +8,7 @@
   --ub1:#f0a63e; --ub2:#d97e12; --ubtxt:#2a1600;
   --glowc:rgba(232,145,45,.25); --r:18px;
   font-family:'Inter',system-ui,sans-serif; color:var(--txt); background:var(--bg);
-  height:100dvh; display:flex; flex-direction:column; position:relative; overflow:hidden;
+  height:100vh; height:100dvh; display:flex; flex-direction:column; position:relative; overflow:hidden;
   -webkit-font-smoothing:antialiased;
 }
 .app.persona-piyush {
@@ -46,7 +46,7 @@
 
 /* ---------- Persona switcher ---------- */
 .PersonaSwitcher { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:0 0 14px; }
-.pcard { display:flex; align-items:center; gap:12px; padding:12px 14px; background:var(--panel); border:1px solid var(--line); border-radius:16px; position:relative; transition:transform .18s,border-color .3s,box-shadow .5s,background .5s; }
+.pcard { display:flex; align-items:center; gap:12px; padding:12px 14px; background:var(--panel); border:1px solid var(--line); border-radius:16px; position:relative; min-width:0; transition:transform .18s,border-color .3s,box-shadow .5s,background .5s; }
 .pcard:hover { transform:translateY(-1px); border-color:var(--line2); }
 .pcard-h { --pc:#e8912d; --pglow:rgba(232,145,45,.3); --psoft:rgba(232,145,45,.09); }
 .pcard-p { --pc:#3b82f6; --pglow:rgba(59,130,246,.32); --psoft:rgba(59,130,246,.1); }
@@ -113,7 +113,7 @@
 .bub h1, .bub h2, .bub h3 { margin:10px 0 6px; font-size:1.05em; }
 
 /* ---------- Code blocks ---------- */
-.codewrap { border:1px solid rgba(255,255,255,.09); border-radius:12px; overflow:hidden; background:#0a0c11; margin:10px 0; }
+.codewrap { border:1px solid rgba(255,255,255,.09); border-radius:12px; overflow:hidden; background:#0a0c11; margin:10px 0; max-width:100%; }
 .codehead { display:flex; align-items:center; justify-content:space-between; padding:7px 8px 7px 13px; background:rgba(255,255,255,.032); border-bottom:1px solid rgba(255,255,255,.06); }
 .codelang { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--atext); }
 .copybtn { font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--txt2); border:1px solid var(--line); border-radius:7px; padding:4px 10px; background:rgba(255,255,255,.02); transition:color .2s,border-color .2s,background .2s; }
@@ -162,6 +162,13 @@
   .wavatar { width:72px; height:72px; font-size:21px; }
   .greet { font-size:20px; }
   .greetsub { font-size:13.5px; }
-  .cinput { font-size:16px; }
   .legal { margin:8px 0 10px; font-size:10px; }
+}
+
+/* ---------- Touch devices: 16px input (no iOS focus-zoom) + >=44px tap targets ---------- */
+@media (pointer:coarse) {
+  .cinput { font-size:16px; }
+  .chip { min-height:44px; display:inline-flex; align-items:center; justify-content:center; }
+  .send { width:44px; height:44px; }
+  .newchat { min-height:44px; }
 }
