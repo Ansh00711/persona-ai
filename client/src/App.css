@@ -144,7 +144,12 @@
 .send { width:37px; height:37px; border-radius:12px; background:var(--accent); color:var(--ubtxt); display:flex; align-items:center; justify-content:center; font-size:16px; font-weight:700; flex:none; transition:background-color .6s,color .6s,transform .15s,box-shadow .3s,opacity .3s; }
 .send:hover { transform:translateY(-1px); box-shadow:0 8px 22px -8px var(--glowc); }
 .send.off { opacity:.35; pointer-events:none; }
-.legal { margin:10px 2px 12px; text-align:center; font-size:11px; color:var(--txt3); }
+.sitefoot { display:flex; flex-direction:column; align-items:center; gap:9px; margin-top:10px; }
+.social { display:flex; align-items:center; justify-content:center; gap:12px; }
+.slink { display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:10px; color:var(--txt3); background:rgba(255,255,255,.02); border:1px solid var(--line); transition:color .2s,border-color .2s,background .25s,transform .16s; }
+.slink:hover { color:var(--atext); background:var(--softer); border-color:var(--soft); transform:translateY(-1px); }
+.slink svg { width:17px; height:17px; }
+.legal { margin:0 2px 12px; text-align:center; font-size:11px; color:var(--txt3); }
 
 /* ---------- Mobile ---------- */
 @media (max-width:640px) { .tagline { display:none; } }
@@ -171,4 +176,5 @@
   .chip { min-height:44px; display:inline-flex; align-items:center; justify-content:center; }
   .send { width:44px; height:44px; }
   .newchat { min-height:44px; }
+  .slink { width:44px; height:44px; }
 }
