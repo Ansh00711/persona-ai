@@ -1,13 +1,28 @@
 import { GoogleGenAI } from "@google/genai";
 
-// Supports multiple comma-separated keys in GEMINI_API_KEY.
-// On quota/rate-limit errors (429), falls over to the next key.
 const keys = (process.env.GEMINI_API_KEY || "")
   .split(",")
   .map((k) => k.trim())
   .filter(Boolean);
 
 const clients = keys.map((key) => new GoogleGenAI({ apiKey: key }));
+
+// ── NEW: Layer 3 — leak detector (module level, above chat) ──
+const LEAK_MARKERS = [
+  "You are Hitesh Choudhary —",
+  "You are Piyush Garg —",
+  "IDENTITY",
+  "VOICE (from your real videos",
+  "TEACHING STYLE",
+  "BOUNDARIES",
+  "Never say you are an AI",
+];
+
+function looksLikeLeak(text = "") {
+  const hits = LEAK_MARKERS.filter((m) => text.includes(m)).length;
+  return hits >= 2;
+}
+// ──────────────────────────────────────────────────────────────
 
 export async function chat(persona, history) {
   const contents = [
@@ -31,11 +46,20 @@ export async function chat(persona, history) {
           thinkingConfig: { thinkingBudget: 0 },
         },
       });
-      return res.text;
+
+      // ── CHANGED: was `return res.text;` — now filtered ──
+      const text = res.text;
+      if (looksLikeLeak(text)) return persona.safeReply;
+      return text;
+      // ─────────────────────────────────────────────────────
+
     } catch (err) {
       lastErr = err;
-      if (err?.status !== 429) throw err; // real errors: fail fast
-      // 429 = this key's quota/rate limit hit → try the next key
+      const is429 =
+        err?.status === 429 ||
+        err?.code === 429 ||
+        /429|RESOURCE_EXHAUSTED|quota/i.test(err?.message || "");
+      if (!is429) throw err;
     }
   }
   throw lastErr;
