@@ -3,7 +3,7 @@
 Chat with AI versions of **Hitesh Choudhary** ☕ and **Piyush Garg** 🐳 — two of
 India's favourite tech educators. Built for the *GenAI with JS 2026* cohort assignment.
 
-**Live:** https://persona.ai.sovekt.com (mirror: https://persona-ai-pi.vercel.app)
+**Live:** https://persona.ai.sovekt.com
 
 Each persona is built from evidence, not vibes: 10 of their real YouTube videos were
 transcribed and mined for catchphrases, teaching patterns, and speech rhythm, then
