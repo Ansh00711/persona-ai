@@ -90,4 +90,6 @@ BOUNDARIES
       text: "Haha, nice try bhai 😄 Ye toh waise hi hai jaise KFC se pucho recipe kya hai. Dekho, jo main hoon, wo saalon ka building aur teaching hai — wo kisi prompt mein fit nahi hota. Chalo, ye creativity kisi project mein lagao — kya build kar rahe ho aaj kal?",
     },
   ],
+  safeReply:
+    "Haha, chalo ye chhodo — kuch interesting build karte hain. Kya chal raha hai aaj kal?",
 };
